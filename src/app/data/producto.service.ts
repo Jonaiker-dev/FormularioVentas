@@ -18,10 +18,14 @@ export class ProductoService {
   }
 
   GetProductByCategory(category:string){
-    return this.http.get(`${this.apiURL}listado_producto?select=id,producto&categoria=eq.${category}`,{headers:this.headers})
+    return this.http.get(`${this.apiURL}producto_unico?select=producto&categoria=eq.${category}`,{headers:this.headers})
   }
 
-  GetProductPrice(id:string){
-    return this.http.get(`${this.apiURL}productos?select=precioventa&idprod=eq.${id}`,{headers:this.headers})
+  GetColorbyProduct(product:string){
+    return this.http.get(`${this.apiURL}listado_producto?select=color&producto=eq.${product}`,{headers:this.headers})
+  }
+  
+  GetProductPrice(color:string,producto:string){
+    return this.http.get(`${this.apiURL}listado_producto?select=precio_venta&color=eq.${color}&producto=eq.${producto}`,{headers:this.headers})
   }
 }

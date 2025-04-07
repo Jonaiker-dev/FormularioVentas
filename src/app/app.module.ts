@@ -6,10 +6,16 @@ import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, provideHttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { VentaComponent } from './module/venta/venta.component';
+import { ProductosComponent } from './module/productos/productos.component';
+import { SidebarComponent } from './shared/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    VentaComponent,
+    ProductosComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
