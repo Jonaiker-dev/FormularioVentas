@@ -27,8 +27,17 @@
         </div>
         
         <div class="form-group">
-            <label for="cantidad">Cantidad</label>
-            <input type="number" class="form-control" id="cantidad" min="1" value="1" formControlName="cantidad">
+            <div class="row">
+                <div class="col-6">
+                    <label for="cantidad">Cantidad</label>
+                    <input type="number" class="form-control" id="cantidad" min="1" (change)="ValidarStock($event)"  formControlName="cantidad">        
+                </div>
+                <div class="col-6">
+                    <label for="stock">Stock</label>          
+                    <input type="number" class="form-control" id="stock" value="0" formControlName="stock" readonly>
+                </div>
+            </div>
+            <p *ngIf="!ValidStock" class="alert alert-warning mt-1 mb-0 fw-bolder">La venta es mayor al stock</p>            
         </div>
 
         <div class="form-group">
@@ -53,11 +62,13 @@
                 <option value="arcela">Arcela</option>
             </select>
         </div>
-
-        <button type="submit" class="btn btn-primary">Guardar</button>
+        <div class="form-group">
+            <label for="fechaventa">Fecha de Venta: </label>
+            <input type="date" class="form-control" formControlName="fechaventa" >
+            
+        </div>
+        <button type="submit" class="btn btn-dark mt-3" [disabled]="(!FormVentas.valid || !ValidStock )">Guardar</button>
         
-        
-        <div>{{FormVentas.value| json }}</div>
     </form>
 </div>
 

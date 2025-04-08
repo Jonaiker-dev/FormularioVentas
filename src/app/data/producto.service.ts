@@ -26,6 +26,6 @@ export class ProductoService {
   }
   
   GetProductPrice(color:string,producto:string){
-    return this.http.get(`${this.apiURL}listado_producto?select=precio_venta&color=eq.${color}&producto=eq.${producto}`,{headers:this.headers})
+    return this.http.get(`${this.apiURL}listado_producto?select=id,precio_venta,stock&color=eq.${color}&producto=eq.${producto}`,{headers:this.headers})
   }
 }
