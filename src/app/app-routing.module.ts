@@ -8,8 +8,8 @@ const routes: Routes = [
     path:'', component:VentaComponent
   },
   {
-    path:'producto', children:[
-      {path:'listado', component:ListadoComponent}
+    path:'ventas', children:[
+      {path:'reportes', component:ListadoComponent}
     ]
   }
 ];

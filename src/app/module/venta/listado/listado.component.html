@@ -1,26 +1,13 @@
 <div class="container mt-3">
     <h2>Listado de Ventas</h2>
-    <div class="table-responsive-sm">
-        <table class="table table-bordered">
-            <thead class="table-dark" >
-                <tr>
-                    <th>ID</th>
-                    <th>Producto</th>
-                    <th>Cantidad</th>
-                    <th>Ganancia</th>
-                    <th>Fecha Venta</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let v of datoventas, let i=index">
-                    <td>{{i+1}}</td>
-                    <td >{{v.nombre}}</td>
-                    <td>{{v.cantidad_venta}}</td>
-                    <td > {{v.ganancia | currency:'S/.' }}</td>
-                    <td>{{v.fechaventa}}</td>
-                </tr>
-                
-                </tbody>
-        </table>
-    </div>
+    <form action="">
+        <div class="form-group border p-4">
+            <h2>Por Fecha:</h2>
+            <label for="">Fecha Inicio</label>
+            <input type="date" class="form-control" >
+            <label for="" class="mt-2">Fecha Fin</label>
+            <input type="date" class="form-control" >
+            <button type="submit" class="btn btn-dark form-control mt-3">Generar reporte</button>
+        </div>
+    </form>
 </div>
