@@ -9,20 +9,27 @@ import { CommonModule } from '@angular/common';
 import { VentaComponent } from './module/venta/venta.component';
 import { ProductosComponent } from './module/productos/productos.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
+import { ListadoComponent } from './module/venta/listado/listado.component';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     VentaComponent,
     ProductosComponent,
-    SidebarComponent
+    SidebarComponent,
+    ListadoComponent,
+  
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    CommonModule
-
+    CommonModule,
+    BrowserAnimationsModule, 
+    ToastrModule.forRoot(),
     
   ],
   providers: [

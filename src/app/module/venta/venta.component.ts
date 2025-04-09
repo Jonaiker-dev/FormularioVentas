@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ProductoService } from '../../data/producto.service';
 import { AbstractControl, ValidatorFn } from '@angular/forms';
+import { VentaService } from '../../data/venta.service';
+import { ToastrService } from 'ngx-toastr';
 
 //VALIDATOR PERSONALIZADO PARA EL STOCK
 
@@ -24,7 +26,7 @@ export class VentaComponent implements OnInit {
   ValidStock=true;
   
 
-  constructor(private fb:FormBuilder, private ps:ProductoService){}
+  constructor(private fb:FormBuilder, private ps:ProductoService,private vs:VentaService,private toastr:ToastrService){}
   
   ngOnInit(): void {
     this.FormVentas=this.fb.group({
@@ -44,13 +46,36 @@ export class VentaComponent implements OnInit {
       this.categorias=data
     });
     
+    
+    
   }
 
 
 
   Enviar(){
+    const body={
+      'idproducto':this.FormVentas.get('id')?.value,
+      'cantidad_venta':this.FormVentas.get('cantidad')?.value,
+      'precioventa':this.FormVentas.get('precio')?.value,
+      'ganancia':0,
+      'metodopago':this.FormVentas.get('metodo')?.value,
+      'idvendedor':(this.FormVentas.get('vendedor')?.value==="arcela")?1:2,
+      'fechaventa':this.FormVentas.get('fechaventa')?.value
+    }
 
+    this.vs.AddSaleProduct(body).subscribe({
+      next: (response) => {
+        this.toastr.success('Venta Registrada', 'Éxito');
+        this.FormVentas.reset()
+        // Puedes realizar otras acciones después del éxito, como limpiar el formulario
+      },
+      error: (error) => {
+        this.toastr.error('Error al registrar venta', 'Error');
+        console.error('Error al agregar dato:', error);
+      },
+    })
   }
+
   CargarProductos(e:any){
     this.ps.GetProductByCategory(e.target.value).subscribe((data)=>{
       this.productos=data

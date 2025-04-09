@@ -1,0 +1,8 @@
+.table-responsive-sm {
+    border: 1px solid #dee2e6; /* Añade un borde para mejor separación */
+}
+th, td {
+    font-size: 0.9rem; /* Reduce un poco el tamaño de la fuente */
+    padding: 0.5rem;
+    text-align: center;
+}
