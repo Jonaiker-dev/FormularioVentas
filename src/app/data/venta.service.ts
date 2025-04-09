@@ -22,4 +22,8 @@ export class VentaService {
   GetAllSales(){
     return this.http.get(`${this.apiURL}listado_venta?select=nombre,cantidad_venta,ganancia,fechaventa`,{headers:this.headers})
   }
+
+  GetSaleForDateRange(StartDate:string,EndDate:string){
+    return this.http.get(`${this.apiURL}listado_venta?select=*&fechaventa=gte.${StartDate}&fechaventa=lte.${EndDate}`,{headers:this.headers})
+  }
 }

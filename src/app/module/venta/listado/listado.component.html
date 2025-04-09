@@ -1,13 +1,14 @@
 <div class="container mt-3">
     <h2>Listado de Ventas</h2>
-    <form action="">
+    <form action="" [formGroup]="FormFecha" (submit)="GenerarReporte()">
         <div class="form-group border p-4">
             <h2>Por Fecha:</h2>
             <label for="">Fecha Inicio</label>
-            <input type="date" class="form-control" >
+            <input type="date" class="form-control" formControlName="fechainicio" >
             <label for="" class="mt-2">Fecha Fin</label>
-            <input type="date" class="form-control" >
+            <input type="date" class="form-control"  formControlName="fechafin">
             <button type="submit" class="btn btn-dark form-control mt-3">Generar reporte</button>
+            <p>{{montochela+" "+montoangela}}</p>
         </div>
     </form>
 </div>
