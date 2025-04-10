@@ -1,1 +1,30 @@
-<p>add-stock works!</p>
+<div class="container-full">
+    <h1>Agregar Stock</h1>
+    <form  [formGroup]="FormStock" (submit)="AgregarStock()"  class="border rounded  p-3 fw-bold ">
+        <div class="form-group">
+            <label for="categoria">Categoria:</label>
+            <select name="" id="categoria" class="form-control" formControlName="categoria" (change)="listarproductos($event)">
+                <option value="">Seleccione una categoria</option>
+                <option value={{c.categoria}} *ngFor="let c of datacategoria">{{c.categoria}}</option>
+            </select>
+        </div>
+        <div class="form-group mt-2">
+            <label for="producto">Producto</label>
+            <select name="" id="producto" class="form-control" formControlName="producto">
+                <option value="">Seleccione un producto</option>
+                <option value={{pr.producto}} *ngFor="let pr of dataproductos">{{pr.producto}}</option>
+            </select>
+        </div>
+        <div class="form-group mt-2">
+            <label for="cantidad">Cantidad:</label>
+            <input type="number" id="cantidad" class="form-control" placeholder="Cantidad Agregada" formControlName="cantidad">
+        </div>
+        <div class="form-group mt-2">
+            <label for="costo">Costo de adquisicion:</label>
+            <input type="number" id="costo" class="form-control" placeholder="Costo de Adquisicion" formControlName="costo">
+        </div>
+        <button type="submit" class="btn btn-dark form-control mt-3 fw-bold" [disabled]="!FormStock.valid">Agregar Stock</button>
+        
+    </form>
+</div>
+    

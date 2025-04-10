@@ -33,4 +33,8 @@ export class ProductoService {
   GetProductPrice(color:string,producto:string){
     return this.http.get(`${this.apiURL}listado_producto?select=id,precio_venta,stock&color=eq.${color}&producto=eq.${producto}`,{headers:this.headers})
   }
+
+  PostAddStock(body:any){
+    return this.http.post(`${this.apiURL}/historial_aumento_stock`,body,{headers:this.headers})  
+  }
 }
