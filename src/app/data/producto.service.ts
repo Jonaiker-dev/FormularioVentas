@@ -13,6 +13,10 @@ export class ProductoService {
   })
   constructor(private http:HttpClient) { }
 
+  GetAllProduct(){
+    return this.http.get(`${this.apiURL}listado_producto?order=id.asc`,{headers:this.headers})
+  }
+
   GetCategoria(){
     return this.http.get(`${this.apiURL}categorias?select=nombreCat`,{headers:this.headers})
   }
@@ -20,6 +24,7 @@ export class ProductoService {
   GetProductByCategory(category:string){
     return this.http.get(`${this.apiURL}producto_unico?select=producto&categoria=eq.${category}`,{headers:this.headers})
   }
+
 
   GetColorbyProduct(product:string){
     return this.http.get(`${this.apiURL}listado_producto?select=color&producto=eq.${product}`,{headers:this.headers})

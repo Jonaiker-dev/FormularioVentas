@@ -1,0 +1,38 @@
+<div class="container-full">
+    <h1>Listado de Productos</h1>
+    <div class="form-group border p-3 fw-bold">
+        <label for="">Categoria: </label>
+        <select name="" id="" class="form-control" (change)="CategoriaElegida($event)">
+            <option value="">Selecciona una categoria</option>
+            <option value="" *ngFor="let cat of datacategorias">{{cat.categoria}}</option>
+        </select>
+    </div>
+    
+    <div class="form-group mt-3">
+        <div class="fw-bold alert alert-warning" *ngIf="datoproductos.length===0">No se encontraron resultados </div>
+        <table class="table table-bordered" *ngIf="datoproductos.length!=0">
+            <thead class="bg bg-dark text-light text-center" >
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Color</th>
+                    <th>Stock</th>
+                </tr>
+            </thead>
+            
+            <tbody class="text-center">
+                
+                <tr *ngFor="let dp of datoproductos">
+                    <td>{{dp.id}}</td>
+                    <td>{{dp.producto}}</td>
+                    <td>{{dp.color}}</td>
+                    <td  class="badge rounded-pill " [ngClass]="{'bg-danger':dp.stock===0,
+                                    'bg-warning':dp.stock===1,
+                                    'bg-dark':dp.stock>1
+                    }" >{{dp.stock}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>
