@@ -18,14 +18,15 @@ export class ListadoprodComponent implements OnInit {
       this.alldata=data
       this.datacategorias=[...new Set(data.map((e:any)=>e.categoria))]
       .map (categoria => ({ categoria: categoria }));
+      console.log(data);
+      
     })
      
   }
 
   CategoriaElegida(e:any){
      this.datoproductos =this.alldata.filter((data:any)=>data.categoria===e.target.selectedOptions[0].textContent)
-     console.log(this.datoproductos);
-        
+     console.log(this.datoproductos);        
   }
 
 

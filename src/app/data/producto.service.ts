@@ -17,8 +17,11 @@ export class ProductoService {
     return this.http.get(`${this.apiURL}listado_producto?order=id.asc`,{headers:this.headers})
   }
 
+  GetColor(){
+    return this.http.get(`${this.apiURL}colores?`,{headers:this.headers})
+  }
   GetCategoria(){
-    return this.http.get(`${this.apiURL}categorias?select=nombreCat`,{headers:this.headers})
+    return this.http.get(`${this.apiURL}categorias?select=nombreCat,idcategoria`,{headers:this.headers})
   }
 
   GetProductByCategory(category:string){
@@ -40,5 +43,9 @@ export class ProductoService {
 
   PostAddStock(body:any){
     return this.http.post(`${this.apiURL}/historial_aumento_stock`,body,{headers:this.headers})  
+  }
+
+  PostAddProduct(body:any){ 
+    return this.http.post(`${this.apiURL}/productos`,body,{headers:this.headers})
   }
 }

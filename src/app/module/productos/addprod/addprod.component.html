@@ -1,9 +1,44 @@
 <div class="container-full">
     <h1>Agregar Producto</h1>
-    <form action="" class="border rounded fw-bolder p-3">
+    <form [formGroup]="FormProducto" (submit)="AgregarProducto()" class="border rounded fw-bolder p-3">
         <div class="form-group">
             <label for="">Producto:</label>
-            <input type="text" class="form-control" placeholder="Nombre del producto">
+            <input type="text" class="form-control" formControlName="nombre" placeholder="Nombre del producto">
         </div>
+        <div class="form-group">
+            <label for="">Categoria:</label>
+            <select name="" id="" class="form-control" (change)="Categoria($event)">
+                <option value="">Seleccione una categoria</option>
+                <option value={{cat.nombreCat}} *ngFor="let cat of datacategoria">{{cat.nombreCat}}</option>
+            </select>
+            <input type="text" formControlName="categoria" *ngIf="false">
+        </div>
+        <div class="form-group">
+            <label for="">Color:</label>
+            <select name="" id="" class="form-control" (change)="Color($event)">
+                <option value="">Seleccione un color</option>
+                <option value={{cat.nombreColor}} *ngFor="let cat of datacolores">{{cat.nombreColor}}</option>
+            </select>
+            <input type="text" formControlName="description" *ngIf="false">
+        </div>
+        <div class="form-group row mt-2">
+            <div class="col-6">
+                <label for="">Stock:</label>
+                <input type="number" class="form-control" formControlName="stock">
+            </div>
+            <div class="col-6">
+                <label for="">Precio de Venta:</label>
+                <input type="number" class="form-control" formControlName="precioventa">
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="">Costo de Adquisicion:</label>
+            <input type="number" class="form-control" formControlName="precio_unitario">
+        </div>
+        <div class="form-group mt-3">
+            <button type="submit" class="btn btn-dark fw-bold form-control">Agregar</button>
+        </div>
+        <p>{{FormProducto.value|json}}</p>
     </form>
 </div>
