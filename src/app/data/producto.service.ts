@@ -34,6 +34,10 @@ export class ProductoService {
     return this.http.get(`${this.apiURL}listado_producto?select=id,precio_venta,stock&color=eq.${color}&producto=eq.${producto}`,{headers:this.headers})
   }
 
+  GetProductHistory(id:string|null){
+    return this.http.get(`${this.apiURL}detalle_historial?prodid=eq.${id}&order=prodid.desc&`,{headers:this.headers})
+  }
+
   PostAddStock(body:any){
     return this.http.post(`${this.apiURL}/historial_aumento_stock`,body,{headers:this.headers})  
   }

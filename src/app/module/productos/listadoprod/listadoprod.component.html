@@ -24,7 +24,11 @@
                 
                 <tr *ngFor="let dp of datoproductos">
                     <td>{{dp.id}}</td>
-                    <td>{{dp.producto}}</td>
+                    <td >
+                        <a [routerLink]="['/productos/detalle/',dp.id]">
+                            {{dp.producto}}
+                        </a>
+                    </td>
                     <td>{{dp.color}}</td>
                     <td  class="badge rounded-pill " [ngClass]="{'bg-danger':dp.stock===0,
                                     'bg-warning':dp.stock===1,

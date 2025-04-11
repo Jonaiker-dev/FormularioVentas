@@ -1,0 +1,28 @@
+
+<div class="container-full">
+    <h1>Historial</h1>
+    <hr>
+    <a routerLink="/productos/listado" class="d-block fw-bold mb-2 text-dark" style="text-decoration: none; font-size: 18px; ">
+        <i class="bi bi-arrow-left"></i>
+        <span>VOLVER</span>
+    </a>
+    <h3>{{datahistorial[0].producto}}</h3>
+    <table class="table table-striped text-center ">
+        <thead class="table-dark ">
+            <tr>
+                <th>ID</th>
+                <th>Stock Agregado</th>
+                <th>Costo</th>
+                <th>Fecha</th>   
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="text-center" *ngFor="let data of datahistorial,let i=index">
+                <td>{{i+1}}</td>   
+                <td>{{data.cantidad}}</td>
+                <td>{{data.costo_adquisicion}}</td>
+                <td>{{data.created_at.slice(0,10)}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -16,6 +16,7 @@ import { ListadoprodComponent } from './module/productos/listadoprod/listadoprod
 import { AddStockComponent } from './module/productos/add-stock/add-stock.component';
 import { AddprodComponent } from './module/productos/addprod/addprod.component';
 import { AddCategoryComponent } from './module/productos/add-category/add-category.component';
+import { DetalleStockComponent } from './module/productos/detalle-stock/detalle-stock.component';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { AddCategoryComponent } from './module/productos/add-category/add-catego
     AddStockComponent,
     AddprodComponent,
     AddCategoryComponent,
+    DetalleStockComponent,
   
   ],
   imports: [

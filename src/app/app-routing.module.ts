@@ -6,6 +6,7 @@ import { ListadoprodComponent } from './module/productos/listadoprod/listadoprod
 import { AddStockComponent } from './module/productos/add-stock/add-stock.component';
 import { AddprodComponent } from './module/productos/addprod/addprod.component';
 import { AddCategoryComponent } from './module/productos/add-category/add-category.component';
+import { DetalleStockComponent } from './module/productos/detalle-stock/detalle-stock.component';
 
 const routes: Routes = [
   {
@@ -16,7 +17,8 @@ const routes: Routes = [
       {path:'listado', component:ListadoprodComponent},
       {path:'stock', component:AddStockComponent},
       {path:'agregar', component:AddprodComponent},
-      {path:'categoria', component:AddCategoryComponent}
+      {path:'categoria', component:AddCategoryComponent},
+      {path:'detalle/:id', component: DetalleStockComponent}
     ]
   },
   {
