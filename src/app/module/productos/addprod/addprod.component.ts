@@ -1,7 +1,21 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { ProductoService } from '../../../data/producto.service';
 import { ToastrService } from 'ngx-toastr';
+
+export function noWhitespaceAtEndValidator(): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    if (!control.value || typeof control.value !== 'string') {
+      return null; // Si el valor es nulo o no es string, no hay espacios al final
+    }
+
+    const hasWhitespaceAtEnd = /[\s]+$/.test(control.value);
+
+    return hasWhitespaceAtEnd ? { 'whitespaceAtEnd': true } : null;
+  };
+}
+
+
 
 @Component({
   selector: 'app-addprod',
@@ -16,7 +30,7 @@ export class AddprodComponent {
 
   constructor(private fa:FormBuilder,private ps:ProductoService,private toastr:ToastrService){
     this.FormProducto=fa.group({
-      nombre:['',Validators.required],
+      nombre:['',[Validators.required,noWhitespaceAtEndValidator()]],
       categoria:['',Validators.required],
       stock:[0,Validators.required],
       precioventa:[0,Validators.required],

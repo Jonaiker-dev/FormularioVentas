@@ -13,28 +13,41 @@ export class AddStockComponent {
     Alldata:any=[]
     datacategoria:any=[]
     dataproductos:any=[]
+    datacolores:any=[]
 
     constructor(private fb:FormBuilder,private ps:ProductoService,private toastr:ToastrService){
       this.FormStock=fb.group({
         categoria:['',Validators.required],
         producto:['',Validators.required],
+        color:['',Validators.required],
         cantidad:['',Validators.required],
         costo:['',Validators.required]
       })
 
       ps.GetAllProduct().subscribe((data:any)=>{
         this.Alldata=data
+       
         this.datacategoria=[...new Set(data.map((x:any)=>x.categoria))]
         .map(cat=>({categoria:cat}))
       })
     }
 
     listarproductos(e:any){
-      this.dataproductos=this.Alldata.filter((x:any)=>x.categoria===e.target.selectedOptions[0].textContent)
+    
+       this.ps.GetProductByCategory(e.target.selectedOptions[0].textContent).subscribe((data)=>{
+        this.dataproductos=data
+       })
+      
     }
 
+    ObtenerColor(e:any){
+        this.datacolores=this.Alldata.filter((x:any)=>x.producto===e.target.selectedOptions[0].textContent)
+    }
+
+   
+
     AgregarStock(){
-      const idprod=this.Alldata.find((x:any)=>x.producto===this.FormStock.get('producto')?.value)
+      const idprod=this.Alldata.find((x:any)=>(x.producto===this.FormStock.get('producto')?.value && x.color===this.FormStock.get('color')?.value) )
       const body={
         'idprod_historial':idprod.id,
         'cantidad':this.FormStock.get('cantidad')?.value,
